@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All users</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="sty.css">
+    <link href="{{url_for('static', filename = 'style.css')}}" rel="stylesheet">
+</head>
+<body class='px-5 py-5'>
+    <h1>All Users:</h1> 
+
+    <table class="table table-hover col-6 mx-auto">
+        <thead>
+            <th>ID</th>
+            <th>First Name:</th>
+            <th>Last Name:</th>
+            <th>Email:</th>
+            <th>Created At:</th>
+            <th>Updated at:</th>
+            <th>Actions:</th>
+        </thead>
+
+        <tbody>
+        {% for one_user in all_users%}
+            <tr>
+                <td>{{one_user.id}}</td>
+                <td>{{one_user.first_name}}</td>
+                <td>{{one_user.last_name}}</td>
+                <td>{{one_user.email}} </td>
+                <td>{{one_user.created_at}}</td>
+                <td>{{one_user.updated_at}}</td>
+                <td>
+                    <a href="/users/view/{{one_user.id}}">View</a>
+                    <a href="/users/edit/{{one_user.id}}">Edit</a>
+                    <a href="/users/delete/{{one_user.id}}">Delete</a>
+                </td>
+
+            </tr>
+        </tbody>
+    {% endfor %}
+</table>
+
+<a href="/users/new" class="btn btn-primary mx-auto ml-2">Add new user</a>
+</body>
+</html>
